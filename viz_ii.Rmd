@@ -389,4 +389,3 @@ weather_df %>%
   geom_density(alpha = .5) +
   facet_grid(. ~ name)
 ```
-
