@@ -116,3 +116,128 @@ weather_df %>%
   facet_grid(. ~ name)
 ```
 
+## Small notes
+
+How many geoms have to exist?
+
+Whatever
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_smooth(se = FALSE)
+```
+
+Neat geom
+
+hexogram
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_hex()
+```
+
+squares
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_bin2d()
+```
+
+contour - elevation map
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_density2d()
+```
+
+## Univariate plots
+
+Histogram
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin)) +
+  geom_histogram()
+```
+
+Colorful histogram
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, color = name)) +
+  geom_histogram()
+```
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, color = name)) +
+  geom_histogram() +
+  facet_grid(. ~ name)
+```
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, color = name)) +
+  geom_histogram(position = "dodge")
+```
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, fill = name)) +
+  geom_histogram(position = "dodge")
+```
+
+New geometry
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, fill = name)) +
+  geom_density(alpha = .3)
+```
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = tmin, fill = name)) +
+  geom_density(alpha = .3, adjust = .5)
+```
+
+Box plots
+
+```{r}
+weather_df %>% 
+  ggplot(aes(y = tmin)) +
+  geom_boxplot()
+```
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = name, y = tmin)) +
+  geom_boxplot()
+```
+
+Trendy plots
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = name, y = tmin, fill = name)) + 
+  geom_violin(alpha = .3)
+```
+
+Add medians
+
+```{r}
+weather_df %>% 
+  ggplot(aes(x = name, y = tmin, fill = name)) + 
+  geom_violin(alpha = .3) +
+  stat_summary(fun = median)
+```
+
+Ridge plots
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = name, color = name)) +
+  geom_density_ridges(alpha = .5)
+```
+
