@@ -1,4 +1,4 @@
-viz_i
+Visualization
 ================
 2024-08-12
 
@@ -435,3 +435,38 @@ weather_df %>%
     ## (`stat_density_ridges()`).
 
 ![](viz_i_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+
+## Save and Embed
+
+Save
+
+``` r
+weather_plot =
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5)
+
+ggsave("weather_plot.pdf", weather_plot, width = 8, height = 5)
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+Embed
+
+``` r
+weather_plot
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_i_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+
+Adjust size
+
+``` r
+weather_plot
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_i_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->

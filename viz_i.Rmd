@@ -1,5 +1,5 @@
 ---
-title: "viz_i"
+title: "Visualization"
 output: github_document
 date: "2024-08-12"
 ---
@@ -239,5 +239,28 @@ Ridge plots
 weather_df %>%
   ggplot(aes(x = tmin, y = name, color = name)) +
   geom_density_ridges(alpha = .5)
+```
+
+## Save and Embed
+
+Save
+```{r}
+weather_plot =
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5)
+
+ggsave("weather_plot.pdf", weather_plot, width = 8, height = 5)
+```
+
+Embed
+
+```{r}
+weather_plot
+```
+
+Adjust size
+```{r, fig.width=12, fig.height=6}
+weather_plot
 ```
 
