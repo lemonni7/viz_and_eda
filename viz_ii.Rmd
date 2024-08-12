@@ -146,3 +146,92 @@ weather_df %>%
     name = "Location",
     discrete = TRUE)
 ```
+
+## Themes
+
+Shift the legend
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  theme(legend.position = "bottom")
+```
+
+Change the overall theme
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  theme_minimal()
+```
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  theme_classic()
+```
+
+Use ggthemes
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  ggthemes::theme_excel()
+```
+
+Orders of theme commands
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```

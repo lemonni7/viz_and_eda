@@ -230,3 +230,114 @@ weather_df %>%
     ## Warning: Removed 17 rows containing missing values (`geom_point()`).
 
 ![](viz_ii_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+## Themes
+
+Shift the legend
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  theme(legend.position = "bottom")
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+Change the overall theme
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  theme_minimal()
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  theme_classic()
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+Use ggthemes
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  ggthemes::theme_excel()
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+Orders of theme commands
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
