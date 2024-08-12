@@ -6,6 +6,8 @@ Visualization
 library(tidyverse)
 ```
 
+    ## Warning: 程辑包'forcats'是用R版本4.3.3 来建造的
+
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.4
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
@@ -490,3 +492,53 @@ tmax_tmin_p / (prcp_dens_p + tmax_date_p)
     ## Removed 17 rows containing missing values (`geom_point()`).
 
 ![](viz_ii_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+
+## Data manipulation
+
+Control factors
+
+``` r
+weather_df %>% 
+  mutate(
+    name = factor(name),
+    name = forcats::fct_relevel(name, c("Molokai_HI"))
+  ) %>% 
+  ggplot(aes(x = name, y = tmax, fill = name)) +
+  geom_violin(alpha = .5)
+```
+
+    ## Warning: Removed 17 rows containing non-finite values (`stat_ydensity()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+Densities for tmin and tmax simultaneously
+
+``` r
+weather_df %>% 
+  filter(name == "CentralPark_NY") %>% 
+  pivot_longer(
+    tmax:tmin,
+    names_to = "observation",
+    values_to = "temperatures"
+  ) %>% 
+  ggplot(aes(x = temperatures, fill = observation)) +
+  geom_density(alpha = .5)
+```
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+
+``` r
+weather_df %>% 
+  pivot_longer(
+    tmax:tmin,
+    names_to = "observation",
+    values_to = "temperatures"
+  ) %>% 
+  ggplot(aes(x = temperatures, fill = observation)) +
+  geom_density(alpha = .5) +
+  facet_grid(. ~ name)
+```
+
+    ## Warning: Removed 34 rows containing non-finite values (`stat_density()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
