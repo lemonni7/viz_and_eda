@@ -79,3 +79,154 @@ weather_df
     ##  9 CentralPark_NY USW00094728 2021-01-09     0   2.8  -4.3
     ## 10 CentralPark_NY USW00094728 2021-01-10     0   5    -1.6
     ## # ℹ 2,180 more rows
+
+## Remember plot
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5)
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+## Labels
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  )
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+## Scales
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  scale_x_continuous(
+    breaks = c(-15, 0, 15),
+    labels = c("-15 C", "0 C", "15 C")
+  ) +
+  scale_y_continuous(
+    trans = "sqrt"
+  )
+```
+
+    ## Warning in self$trans$transform(x): 产生了NaNs
+
+    ## Warning: Transformation introduced infinite values in continuous y-axis
+
+    ## Warning: Removed 142 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  scale_x_continuous(
+    breaks = c(-15, 0, 15),
+    labels = c("-15 C", "0 C", "15 C")
+  ) +
+  scale_y_continuous(
+    trans = "log"
+  )
+```
+
+    ## Warning in self$trans$transform(x): 产生了NaNs
+
+    ## Warning: Transformation introduced infinite values in continuous y-axis
+
+    ## Warning: Removed 142 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  scale_x_continuous(
+    breaks = c(-15, 0, 15),
+    labels = c("-15 C", "0 C", "15 C")
+  ) +
+  scale_y_continuous(
+    position = "right"
+  )
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+Colorful scales
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  scale_color_hue(
+    name  = "Location",
+    h = c(100, 200))
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+Fancier colors
+
+``` r
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE)
+```
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->

@@ -31,3 +31,118 @@ weather_df =
 
 weather_df
 ```
+
+## Remember plot
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5)
+```
+
+## Labels
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  )
+```
+
+## Scales
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  scale_x_continuous(
+    breaks = c(-15, 0, 15),
+    labels = c("-15 C", "0 C", "15 C")
+  ) +
+  scale_y_continuous(
+    trans = "sqrt"
+  )
+```
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  scale_x_continuous(
+    breaks = c(-15, 0, 15),
+    labels = c("-15 C", "0 C", "15 C")
+  ) +
+  scale_y_continuous(
+    trans = "log"
+  )
+```
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  scale_x_continuous(
+    breaks = c(-15, 0, 15),
+    labels = c("-15 C", "0 C", "15 C")
+  ) +
+  scale_y_continuous(
+    position = "right"
+  )
+```
+
+Colorful scales
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  scale_color_hue(
+    name  = "Location",
+    h = c(100, 200))
+```
+
+Fancier colors
+
+```{r}
+weather_df %>%
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from rnoaa package; temperatures in 2021."
+  ) +
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE)
+```
