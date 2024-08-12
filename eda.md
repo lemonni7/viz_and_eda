@@ -404,16 +404,6 @@ weather_df %>%
 
 <img src="eda_files/figure-gfm/unnamed-chunk-14-1.png" width="90%" />
 
-``` r
-options(
-  ggplot2.continous.color = "viridis",
-  ggplot2.continous.fill = "viridis"
-)
-
-scale_color_discrete = scale_color_viridis_d
-scale_fill_discrete = scale_fill_viridis_d
-```
-
 `window functions`
 
 ``` r
@@ -522,3 +512,7 @@ weather_df %>%
     ## 1 CentralPark_NY            12.2           4.43
     ## 2 Molokai_HI                 5.6           1.24
     ## 3 Waterhole_WA              11.1           3.04
+
+## Quick note
+
+Summarize
